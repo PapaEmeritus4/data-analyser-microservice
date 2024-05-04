@@ -1,20 +1,20 @@
 package org.example.dataanalysermicroservice.config;
 
 import com.google.gson.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
 @Component
-public class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
-
+public class LocalDateTimeDeserializer
+        implements JsonDeserializer<LocalDateTime> {
 
     @Override
-    public LocalDateTime deserialize(JsonElement json,
-                                     Type type,
-                                     JsonDeserializationContext context
+    public LocalDateTime deserialize(
+            JsonElement json,
+            Type typeOfT,
+            JsonDeserializationContext context
     ) {
         JsonArray jsonArray = json.getAsJsonArray();
         int year = jsonArray.get(0).getAsInt();
@@ -25,4 +25,5 @@ public class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime
         int second = jsonArray.get(5).getAsInt();
         return LocalDateTime.of(year, month, day, hour, minute, second);
     }
+
 }
